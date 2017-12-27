@@ -415,8 +415,8 @@ ExecuteSVMClassify(SVMClassifyRuntimeParamsPtr p)
     
     if (p->PFlagEncountered && p->modelNameEncountered && p->modelname != NULL) {
         // Parameter: p->modelPath
-        char *fileName;
-        GetCStringFromHandle(p->modelname, fileName, GetHandleSize(p->modelname));
+        char fileName[256];
+        GetCStringFromHandle(p->modelname, fileName, sizeof(fileName));
         GetFullPathFromSymbolicPathAndFilePath(p->pathName, fileName, inPutPath);
     }
     else if(XOPOpenFileDialog("Select the model file", "", NULL, "", inPutPath) != 0){
