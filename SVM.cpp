@@ -102,6 +102,11 @@ struct SVMTrainRuntimeParams {
     double numValidation;
     int VFlagParamsSet[1];
     
+    // Parameters for /P flag group.
+    int PFlagEncountered;
+    char outputPath[MAX_OBJ_NAME+1];
+    int PFlagParamsSet[1];
+    
     // Parameters for /C flag group.
     int CFlagEncountered;
     double C;
@@ -122,10 +127,10 @@ struct SVMTrainRuntimeParams {
     
     // Main parameters.
     
-    // Parameters for outputPath keyword group.
-    int outputPathEncountered;
-    char outPutPath[MAX_OBJ_NAME+1];
-    int outputPathParamsSet[1];
+    // Parameters for modelName keyword group.
+    int modelNameEncountered;
+    Handle modelName;
+    int modelNameParamsSet[1];
     
     // Parameters for inputWave keyword group.
     int inputWaveEncountered;
@@ -215,14 +220,11 @@ ExecuteSVMTrain(SVMTrainRuntimeParamsPtr p)
     
     // Main parameters.
     
-    if (p->outputPathEncountered) {
+    if (p->PFlagEncountered && p->modelNameEncountered && p->modelName != nil) {
         // Parameter: p->outPutPath
-        if(!FullPathPointsToFile(p->outPutPath)){
-            ConcatenatePaths(p->outPutPath, "model.svm", outPutPath);
-        }
-        else{
-            GetNativePath(p->outPutPath, outPutPath);
-        }
+        char fileName[256];
+        GetCStringFromHandle(p->modelName, fileName, sizeof(fileName));
+        GetFullPathFromSymbolicPathAndFilePath(p->outputPath, fileName, outPutPath);
         
     }
     else if (validationMode<1){
@@ -371,12 +373,16 @@ struct SVMClassifyRuntimeParams {
     int PROBFlagEncountered;
     // There are no fields for this group because it has no parameters.
     
+    // Parameters for /P flag group.
+    int PFlagEncountered;
+    char pathName[MAX_OBJ_NAME+1];
+    int PFlagParamsSet[1];
     // Main parameters.
     
-    // Parameters for modelPath keyword group.
-    int modelPathEncountered;
-    char modelPath[MAX_OBJ_NAME+1];
-    int modelPathParamsSet[1];
+    // Parameters for modelName keyword group.
+    int modelNameEncountered;
+    Handle modelname;
+    int modelNameParamsSet[1];
     
     // Parameters for inputWave keyword group.
     int inputWaveEncountered;
@@ -407,9 +413,11 @@ ExecuteSVMClassify(SVMClassifyRuntimeParamsPtr p)
     
     // Main parameters.
     
-    if (p->modelPathEncountered) {
+    if (p->PFlagEncountered && p->modelNameEncountered && p->modelname != NULL) {
         // Parameter: p->modelPath
-        GetNativePath(p->modelPath, inPutPath);
+        char *fileName;
+        GetCStringFromHandle(p->modelname, fileName, GetHandleSize(p->modelname));
+        GetFullPathFromSymbolicPathAndFilePath(p->pathName, fileName, inPutPath);
     }
     else if(XOPOpenFileDialog("Select the model file", "", NULL, "", inPutPath) != 0){
         return FILE_NOT_FOUND;
@@ -516,7 +524,6 @@ double classifyNodes(svm_node *nodes, svm_model *model,int predict_probability, 
 }
 
 
-
 static int
 RegisterSVMClassify(void)
 {
@@ -525,13 +532,11 @@ RegisterSVMClassify(void)
     const char* runtimeStrVarList;
     
     // NOTE: If you change this template, you must change the SVMClassifyRuntimeParams structure as well.
-    cmdTemplate = "SVMClassify /PROB modelPath=name:modelPath, inputWave=wave:inPutWave";
+    cmdTemplate = "SVMClassify /PROB /P=name:pathName modelName=string:modelname, inputWave=wave:inPutWave";
     runtimeNumVarList = "V_SVMClass;V_SVMProb";
     runtimeStrVarList = "";
     return RegisterOperation(cmdTemplate, runtimeNumVarList, runtimeStrVarList, sizeof(SVMClassifyRuntimeParams), (void*)ExecuteSVMClassify, 0);
 }
-
-
 
 
 static int
@@ -542,11 +547,15 @@ RegisterSVMTrain(void)
     const char* runtimeStrVarList;
     
     // NOTE: If you change this template, you must change the SVMTrainRuntimeParams structure as well.
-    cmdTemplate = "SVMTrain /TYPE=number:svm_type /K=number:kernel_type /D=number:degree /Y=number:gamma /CF=number:coef0 /V=number:numValidation /C=number:C /NU=number:nu /SHRINK /PROB outputPath=name:outPutPath, inputWave=wave:inPutWave, inputClasses=wave:inputClasses";
+    cmdTemplate = "SVMTrain /TYPE=number:svm_type /K=number:kernel_type /D=number:degree /Y=number:gamma /CF=number:coef0 /V=number:numValidation /P=name:outputPath /C=number:C /NU=number:nu /SHRINK /PROB modelName=String:modelName, inputWave=wave:inPutWave, inputClasses=wave:inputClasses";
     runtimeNumVarList = "V_SVMValidation";
     runtimeStrVarList = "S_fileName";
     return RegisterOperation(cmdTemplate, runtimeNumVarList, runtimeStrVarList, sizeof(SVMTrainRuntimeParams), (void*)ExecuteSVMTrain, 0);
 }
+
+
+
+
 
 
 
