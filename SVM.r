@@ -37,4 +37,8 @@ resource 'XOPC' (1100) {
     {
         "SVMTrain",
         XOPOp + dataOp + compilableOp,
-    } };
+        "SVMClassify",
+        XOPOp + dataOp + compilableOp,
+    }
+    
+};

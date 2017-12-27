@@ -54,7 +54,7 @@
 
 #define Malloc(type,n) (type *)malloc((n)*sizeof(type))
 svm_problem makeProblem(waveHndl inputWave, waveHndl inputClasses);
-
+double classifyNodes(svm_node *nodes, svm_model *model, int predict_probability, double *prob_estimates);
 
 
 // Operation template: SVMTrain /TYPE=number:svm_type /K=number:kernel_type /D=number:degree /Y=number:gamma /CF=number:coef0 /C=number:C /NU=number:nu /SHRINK /PROB outputPath=name:outPutPath, inputWave=wave:inPutWave, inputClasses=wave:inputClasses
@@ -198,7 +198,13 @@ ExecuteSVMTrain(SVMTrainRuntimeParamsPtr p)
     
     if (p->outputPathEncountered) {
         // Parameter: p->outPutPath
-        ConcatenatePaths(p->outPutPath, "model.svm", outPutPath);
+        if(!FullPathPointsToFile(p->outPutPath)){
+            ConcatenatePaths(p->outPutPath, "model.svm", outPutPath);
+        }
+        else{
+            GetNativePath(p->outPutPath, outPutPath);
+        }
+        
     }
     else if (XOPSaveFileDialog("Select where to save the model file", "", NULL, "", "svm", outPutPath) != 0){
          return FILE_NOT_FOUND;
@@ -251,8 +257,12 @@ ExecuteSVMTrain(SVMTrainRuntimeParamsPtr p)
                     }
                     svm_free_and_destroy_model(&model);
                     svm_destroy_param(&params);
+                    for (int i; i<problem.l; i++) {
+                        free(problem.x[i]);
+                    }
                     free(problem.y);
                     free(problem.x);
+                    SetOperationStrVar("S_fileName",outPutPath);
                 }
                 else{
                     
@@ -260,11 +270,13 @@ ExecuteSVMTrain(SVMTrainRuntimeParamsPtr p)
                 
                 
             }
-           
-           
-            
-            
         }
+        else{
+            return NULL_WAVE_OP;
+        }
+    }
+    else{
+        return NOWAV;
     }
     
     
@@ -277,7 +289,7 @@ svm_problem makeProblem(waveHndl inputWave, waveHndl inputClasses){
     svm_problem problem={0};
     int numDimensionsInputWave;
     int numDimensionsClassesWave;
-    struct svm_node *x_space={0};
+    
     
     CountInt dimensionSizesClassesWave[MAX_DIMENSIONS+1];
     CountInt dimensionSizesInputWave[MAX_DIMENSIONS+1];
@@ -287,11 +299,13 @@ svm_problem makeProblem(waveHndl inputWave, waveHndl inputClasses){
     problem.l=dimensionSizesClassesWave[0];
     problem.y=Malloc(double, problem.l);
     problem.x=Malloc(struct svm_node *,problem.l);
-    x_space = Malloc(struct svm_node,elements+1);
+    
     double value[2];
     IndexInt classIndices[MAX_DIMENSIONS]={0};
     IndexInt dataIndices[MAX_DIMENSIONS]={0};
     for (int i=0; i<problem.l; i++) {
+        problem.x[i] = Malloc(struct svm_node,elements+1);
+        
         classIndices[0]=i;
         MDGetNumericWavePointValue(inputClasses, classIndices, value);
         problem.y[i]=value[0];
@@ -300,18 +314,188 @@ svm_problem makeProblem(waveHndl inputWave, waveHndl inputClasses){
             dataIndices[0]=i;
             dataIndices[1]=j;
             MDGetNumericWavePointValue(inputWave, dataIndices, value);
-            x_space[j].index=j+1;
-            x_space[j].value=value[0];
+             problem.x[i][j].index=j+1;
+             problem.x[i][j].value=value[0];
             
         }
-        x_space[elements].index=-1;
-        problem.x[i]=&x_space[i];
+        problem.x[i][elements].index=-1;
     }
-    
-    
     
     return problem;
 }
+
+
+
+
+// Operation template: SVMClassify /PROB modelPath=name:modelPath, inputWave=wave:inPutWave
+
+// Runtime param structure for SVMClassify operation.
+#pragma pack(2)    // All structures passed to Igor are two-byte aligned.
+struct SVMClassifyRuntimeParams {
+    // Flag parameters.
+    
+    // Parameters for /PROB flag group.
+    int PROBFlagEncountered;
+    // There are no fields for this group because it has no parameters.
+    
+    // Main parameters.
+    
+    // Parameters for modelPath keyword group.
+    int modelPathEncountered;
+    char modelPath[MAX_OBJ_NAME+1];
+    int modelPathParamsSet[1];
+    
+    // Parameters for inputWave keyword group.
+    int inputWaveEncountered;
+    waveHndl inPutWave;
+    int inputWaveParamsSet[1];
+    
+    // These are postamble fields that Igor sets.
+    int calledFromFunction;                    // 1 if called from a user function, 0 otherwise.
+    int calledFromMacro;                    // 1 if called from a macro, 0 otherwise.
+};
+typedef struct SVMClassifyRuntimeParams SVMClassifyRuntimeParams;
+typedef struct SVMClassifyRuntimeParams* SVMClassifyRuntimeParamsPtr;
+#pragma pack()    // Reset structure alignment to default.
+
+
+
+extern "C" int
+ExecuteSVMClassify(SVMClassifyRuntimeParamsPtr p)
+{
+    int err = 0;
+    char inPutPath[MAX_PATH_LEN+1]="";
+    struct svm_model *model=NULL;
+    struct svm_node *nodes=NULL;
+    int predict_probability=0;
+    if (p->PROBFlagEncountered) {
+        predict_probability=1;
+    }
+    
+    // Main parameters.
+    
+    if (p->modelPathEncountered) {
+        // Parameter: p->modelPath
+        GetNativePath(p->modelPath, inPutPath);
+    }
+    else if(XOPOpenFileDialog("Select the model file", "", NULL, "", inPutPath) != 0){
+        return FILE_NOT_FOUND;
+    }
+#ifdef MACIGOR
+    HFSToPosixPath(inPutPath, inPutPath, 0);
+#endif
+    model=svm_load_model(inPutPath);
+    if (model == NULL) {
+        return FILE_OPEN_ERROR;
+    }
+
+    if (p->inputWaveEncountered) {
+        if (p->inPutWave != NULL) {
+            int numDimensionsInputWave;
+            CountInt dimensionSizesInputWave[MAX_DIMENSIONS+1];
+            MDGetWaveDimensions(p->inPutWave, &numDimensionsInputWave, dimensionSizesInputWave);
+            if (numDimensionsInputWave>1) {
+                int elements=dimensionSizesInputWave[0];
+                int points=dimensionSizesInputWave[1];
+                waveHndl outWave;
+                MakeWave(&outWave, "W_SVMResult", elements, NT_FP32, 1);
+                double result[2];
+                double *prob_estimates=NULL;
+                nodes=Malloc(struct svm_node,points+1);
+                IndexInt dataIndices[MAX_DIMENSIONS]={0};
+                IndexInt outIndices[MAX_DIMENSIONS]={0};
+                double value[2]={0};
+                for (int j=0; j<elements; j++) {
+                    for (int i=0; i<elements; i++) {
+                        dataIndices[1]=i;
+                        dataIndices[0]=j;
+                        MDGetNumericWavePointValue(p->inPutWave, dataIndices, value);
+                        nodes[i].index=i+1;
+                        nodes[i].value=value[0];
+                    }
+                    nodes[elements].index=-1;
+                    result[0]=classifyNodes(nodes, model, predict_probability, prob_estimates);
+                    outIndices[0]=j;
+                    MDSetNumericWavePointValue(outWave, outIndices, result);
+                }
+                free(nodes);
+                svm_free_and_destroy_model(&model);
+                
+            }
+            else{
+                int elements=dimensionSizesInputWave[0];
+                nodes=Malloc(struct svm_node,elements+1);
+                IndexInt dataIndices[MAX_DIMENSIONS]={0};
+                double value[2]={0};
+                for (int i=0; i<elements; i++) {
+                    dataIndices[0]=i;
+                    MDGetNumericWavePointValue(p->inPutWave, dataIndices, value);
+                    nodes[i].index=i+1;
+                    nodes[i].value=value[0];
+                }
+                nodes[elements].index=-1;
+                double *prob_estimates=NULL;
+                double result=classifyNodes(nodes, model, predict_probability, prob_estimates);
+                SetOperationNumVar("V_SVMClass",result);
+                free(nodes);
+                svm_free_and_destroy_model(&model);
+            }
+        }
+        else{
+            return NULL_WAVE_OP;
+        }
+        // Parameter: p->inPutWave (test for NULL handle before using)
+        
+    }
+    else{
+        return NOWAV;
+    }
+    
+   
+    
+    return err;
+}
+
+
+double classifyNodes(svm_node *nodes, svm_model *model,int predict_probability, double *prob_estimates){
+    
+    int svm_type=svm_get_svm_type(model);
+    double target_label, predict_label;
+    int nr_class=svm_get_nr_class(model);
+    int j=0;
+    
+    if (predict_probability && (svm_type==C_SVC || svm_type==NU_SVC)){
+        prob_estimates = (double *) malloc(nr_class*sizeof(double));
+        predict_label = svm_predict_probability(model,nodes,prob_estimates);
+        printf("%g",predict_label);
+        for(j=0;j<nr_class;j++)
+            printf(" %g",prob_estimates[j]);
+    }
+    else
+    {
+        predict_label = svm_predict(model,nodes);
+       
+    }
+     return predict_label;
+    
+}
+
+
+
+static int
+RegisterSVMClassify(void)
+{
+    const char* cmdTemplate;
+    const char* runtimeNumVarList;
+    const char* runtimeStrVarList;
+    
+    // NOTE: If you change this template, you must change the SVMClassifyRuntimeParams structure as well.
+    cmdTemplate = "SVMClassify /PROB modelPath=name:modelPath, inputWave=wave:inPutWave";
+    runtimeNumVarList = "V_SVMClass;V_SVMProb";
+    runtimeStrVarList = "";
+    return RegisterOperation(cmdTemplate, runtimeNumVarList, runtimeStrVarList, sizeof(SVMClassifyRuntimeParams), (void*)ExecuteSVMClassify, 0);
+}
+
 
 
 
@@ -441,6 +625,11 @@ XOPMain(IORecHandle ioRecHandle)		// The use of XOPMain rather than main means t
         SetXOPResult(err);
         return EXIT_FAILURE;
     }
+    if (err = RegisterSVMClassify()) {
+        SetXOPResult(err);
+        return EXIT_FAILURE;
+    }
+    
 
 	SetXOPResult(0L);
 	return EXIT_SUCCESS;
