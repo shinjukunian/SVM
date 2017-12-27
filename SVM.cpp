@@ -57,6 +57,14 @@ svm_problem makeProblem(waveHndl inputWave, waveHndl inputClasses);
 double classifyNodes(svm_node *nodes, svm_model *model, int predict_probability, double *prob_estimates);
 
 
+static void print_string_Igor(const char *s)
+{
+    XOPNotice(s);
+}
+
+
+
+
 // Operation template: SVMTrain /TYPE=number:svm_type /K=number:kernel_type /D=number:degree /Y=number:gamma /CF=number:coef0 /C=number:C /NU=number:nu /SHRINK /PROB outputPath=name:outPutPath, inputWave=wave:inPutWave, inputClasses=wave:inputClasses
 
 // Runtime param structure for SVMTrain operation.
@@ -88,6 +96,11 @@ struct SVMTrainRuntimeParams {
     int CFFlagEncountered;
     double coef0;
     int CFFlagParamsSet[1];
+    
+    // Parameters for /V flag group.
+    int VFlagEncountered;
+    double numValidation;
+    int VFlagParamsSet[1];
     
     // Parameters for /C flag group.
     int CFlagEncountered;
@@ -139,6 +152,7 @@ ExecuteSVMTrain(SVMTrainRuntimeParamsPtr p)
     params.cache_size=100;
     params.eps=0.001;
     char outPutPath[MAX_PATH_LEN+1]="model.svm";
+    int validationMode=0;
     int err = 0;
     struct svm_problem problem={0};
     
@@ -193,6 +207,11 @@ ExecuteSVMTrain(SVMTrainRuntimeParamsPtr p)
     if (p->PROBFlagEncountered) {
         params.probability=1;
     }
+    if (p->VFlagEncountered) {
+        // Parameter: p->numValidation
+        validationMode=(int)p->numValidation;
+    }
+    
     
     // Main parameters.
     
@@ -206,15 +225,19 @@ ExecuteSVMTrain(SVMTrainRuntimeParamsPtr p)
         }
         
     }
-    else if (XOPSaveFileDialog("Select where to save the model file", "", NULL, "", "svm", outPutPath) != 0){
-         return FILE_NOT_FOUND;
+    else if (validationMode<1){
+        if(XOPSaveFileDialog("Select where to save the model file", "", NULL, "", "svm", outPutPath) != 0){
+            return FILE_NOT_FOUND;
+        }
     }
+    
    
     
     if (p->inputWaveEncountered && p->inPutWave != NULL) {
         // Parameter: p->inPutWave (test for NULL handle before using)
         if (p->inputClassesEncountered && p->inputClasses != NULL) {
             // Parameter: p->inputClasses (test for NULL handle before using)
+            svm_set_print_string_function(&print_string_Igor);
             int numDimensionsInputWave;
             int numDimensionsClassesWave;
             CountInt dimensionSizesClassesWave[MAX_DIMENSIONS+1];
@@ -235,34 +258,44 @@ ExecuteSVMTrain(SVMTrainRuntimeParamsPtr p)
                 const char *parameterError=svm_check_parameter(&problem,
                                                         &params);
                 if (parameterError == 0) {
-                    struct svm_model *model=svm_train(&problem, &params);
-                    double *target = Malloc(double,problem.l);
-                    int total_correct = 0;
-
-                    svm_cross_validation(&problem,&params,10,target);
-                    for(int i=0;i<problem.l;i++){
-                        if(target[i] == problem.y[i]){
-                            ++total_correct;
+                    if(validationMode>0){
+                        double *target = Malloc(double,problem.l);
+                        int total_correct = 0;
+                        svm_cross_validation(&problem,&params,validationMode,target);
+                        for(int i=0;i<problem.l;i++){
+                            if(target[i] == problem.y[i]){
+                                ++total_correct;
+                            }
                         }
+                        free(target);
+                        double correct=100.0*total_correct/problem.l;
+                        char notice[1024];
+                        sprintf(notice, "Cross Validation Accuracy = %g%%\n",correct);
+                        XOPNotice(notice);
+                       // printf("Cross Validation Accuracy = %g%%\n",correct);
+                        SetOperationNumVar("V_SVMValidation", correct);
                     }
-                    free(target);
-                    printf("Cross Validation Accuracy = %g%%\n",100.0*total_correct/problem.l);
+                    else{
+                        struct svm_model *model=svm_train(&problem, &params);
 #ifdef MACIGOR
-                    HFSToPosixPath(outPutPath, outPutPath, 0);
+                        HFSToPosixPath(outPutPath, outPutPath, 0);
 #endif
-                    if(svm_save_model(outPutPath,model))
-                    {
-                        fprintf(stderr, "can't save model to file %s\n", outPutPath);
-                        
+                        if(svm_save_model(outPutPath,model))
+                        {
+                            fprintf(stderr, "can't save model to file %s\n", outPutPath);
+                            
+                        }
+                         svm_free_and_destroy_model(&model);
                     }
-                    svm_free_and_destroy_model(&model);
+                    
                     svm_destroy_param(&params);
                     for (int i; i<problem.l; i++) {
-                        free(problem.x[i]);
+                        //free(problem.x[i]);
                     }
                     free(problem.y);
                     free(problem.x);
                     SetOperationStrVar("S_fileName",outPutPath);
+                    svm_set_print_string_function(NULL);
                 }
                 else{
                     
@@ -391,6 +424,7 @@ ExecuteSVMClassify(SVMClassifyRuntimeParamsPtr p)
 
     if (p->inputWaveEncountered) {
         if (p->inPutWave != NULL) {
+            svm_set_print_string_function(&print_string_Igor);
             int numDimensionsInputWave;
             CountInt dimensionSizesInputWave[MAX_DIMENSIONS+1];
             MDGetWaveDimensions(p->inPutWave, &numDimensionsInputWave, dimensionSizesInputWave);
@@ -406,14 +440,14 @@ ExecuteSVMClassify(SVMClassifyRuntimeParamsPtr p)
                 IndexInt outIndices[MAX_DIMENSIONS]={0};
                 double value[2]={0};
                 for (int j=0; j<elements; j++) {
-                    for (int i=0; i<elements; i++) {
+                    for (int i=0; i<points; i++) {
                         dataIndices[1]=i;
                         dataIndices[0]=j;
                         MDGetNumericWavePointValue(p->inPutWave, dataIndices, value);
                         nodes[i].index=i+1;
                         nodes[i].value=value[0];
                     }
-                    nodes[elements].index=-1;
+                    nodes[points].index=-1;
                     result[0]=classifyNodes(nodes, model, predict_probability, prob_estimates);
                     outIndices[0]=j;
                     MDSetNumericWavePointValue(outWave, outIndices, result);
@@ -440,6 +474,7 @@ ExecuteSVMClassify(SVMClassifyRuntimeParamsPtr p)
                 free(nodes);
                 svm_free_and_destroy_model(&model);
             }
+            svm_set_print_string_function(NULL);
         }
         else{
             return NULL_WAVE_OP;
@@ -507,8 +542,8 @@ RegisterSVMTrain(void)
     const char* runtimeStrVarList;
     
     // NOTE: If you change this template, you must change the SVMTrainRuntimeParams structure as well.
-    cmdTemplate = "SVMTrain /TYPE=number:svm_type /K=number:kernel_type /D=number:degree /Y=number:gamma /CF=number:coef0 /C=number:C /NU=number:nu /SHRINK /PROB outputPath=name:outPutPath, inputWave=wave:inPutWave, inputClasses=wave:inputClasses";
-    runtimeNumVarList = "V_flag";
+    cmdTemplate = "SVMTrain /TYPE=number:svm_type /K=number:kernel_type /D=number:degree /Y=number:gamma /CF=number:coef0 /V=number:numValidation /C=number:C /NU=number:nu /SHRINK /PROB outputPath=name:outPutPath, inputWave=wave:inPutWave, inputClasses=wave:inputClasses";
+    runtimeNumVarList = "V_SVMValidation";
     runtimeStrVarList = "S_fileName";
     return RegisterOperation(cmdTemplate, runtimeNumVarList, runtimeStrVarList, sizeof(SVMTrainRuntimeParams), (void*)ExecuteSVMTrain, 0);
 }
