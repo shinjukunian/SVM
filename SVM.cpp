@@ -259,7 +259,7 @@ ExecuteSVMTrain(SVMTrainRuntimeParamsPtr p)
                 problem=makeProblem(p->inPutWave, p->inputClasses);
                 const char *parameterError=svm_check_parameter(&problem,
                                                         &params);
-                if (parameterError == 0) {
+                if (parameterError == NULL) {
                     if(validationMode>0){
                         double *target = Malloc(double,problem.l);
                         int total_correct = 0;
@@ -272,7 +272,7 @@ ExecuteSVMTrain(SVMTrainRuntimeParamsPtr p)
                         free(target);
                         double correct=100.0*total_correct/problem.l;
                         char notice[1024];
-                        sprintf(notice, "Cross Validation Accuracy = %g%%\n",correct);
+                        snprintf(notice,1024, "Cross Validation Accuracy = %g%%\n",correct);
                         XOPNotice(notice);
                        // printf("Cross Validation Accuracy = %g%%\n",correct);
                         SetOperationNumVar("V_SVMValidation", correct);
@@ -298,9 +298,13 @@ ExecuteSVMTrain(SVMTrainRuntimeParamsPtr p)
                     free(problem.x);
                     SetOperationStrVar("S_fileName",outPutPath);
                     svm_set_print_string_function(NULL);
+                    char buffer[1024];
+                    snprintf(buffer,1024, "Model saved to %s",outPutPath);
+                    XOPNotice(buffer);
                 }
                 else{
-                    
+                    XOPNotice(parameterError);
+                    return EXPECTED_XOP_PARAM;
                 }
                 
                 
@@ -436,16 +440,46 @@ ExecuteSVMClassify(SVMClassifyRuntimeParamsPtr p)
             int numDimensionsInputWave;
             CountInt dimensionSizesInputWave[MAX_DIMENSIONS+1];
             MDGetWaveDimensions(p->inPutWave, &numDimensionsInputWave, dimensionSizesInputWave);
+            waveHndl probWave;
+            int elements;
+            int points;
+            int numClasses=svm_get_nr_class(model);
+            double *prob_estimates=(double *) malloc(numClasses*sizeof(double));
+            
             if (numDimensionsInputWave>1) {
-                int elements=dimensionSizesInputWave[0];
-                int points=dimensionSizesInputWave[1];
+                elements=dimensionSizesInputWave[0];
+                points=dimensionSizesInputWave[1];
                 waveHndl outWave;
+                if (predict_probability) {
+                    if(svm_check_probability_model(model)){
+                        CountInt probSize[MAX_DIMENSIONS+1]={0};
+                        probSize[0]=elements;
+                        probSize[1]=numClasses;
+                        MDMakeWave(&probWave, "M_SVMProb", NULL, probSize, NT_FP32, 1);
+                        int *labels=Malloc(int, numClasses);
+                        svm_get_labels(model, labels);
+                        int bLength=snprintf(NULL, 0, "%d",INT_MAX);
+                        char *buffer=(char*)malloc(bLength+1);
+                        for (int i=0; i<numClasses; i++) {
+                            snprintf(buffer,bLength+1, "%d",labels[i]);
+                            MDSetDimensionLabel(probWave, 1, i, buffer);
+                        }
+                        free(buffer);
+                    }
+                    else{
+                        char buffer[1024];
+                        snprintf(buffer,1024, "The selected model does not contain any probability data. Only classification results will be returned");
+                        XOPNotice(buffer);
+                    }
+                }
+                
                 MakeWave(&outWave, "W_SVMResult", elements, NT_FP32, 1);
                 double result[2];
-                double *prob_estimates=NULL;
+                
                 nodes=Malloc(struct svm_node,points+1);
                 IndexInt dataIndices[MAX_DIMENSIONS]={0};
                 IndexInt outIndices[MAX_DIMENSIONS]={0};
+                IndexInt probIndices[MAX_DIMENSIONS]={0};
                 double value[2]={0};
                 for (int j=0; j<elements; j++) {
                     for (int i=0; i<points; i++) {
@@ -459,30 +493,40 @@ ExecuteSVMClassify(SVMClassifyRuntimeParamsPtr p)
                     result[0]=classifyNodes(nodes, model, predict_probability, prob_estimates);
                     outIndices[0]=j;
                     MDSetNumericWavePointValue(outWave, outIndices, result);
+                    if (prob_estimates != NULL && probWave != NULL) {
+                        double v[2]={0};
+                        for (int n=0; n<numClasses; n++) {
+                            probIndices[0]=j;
+                            probIndices[1]=n;
+                            v[0]=prob_estimates[n];
+                            MDSetNumericWavePointValue(probWave, probIndices, v);
+                        }
+                    }
                 }
                 free(nodes);
-                svm_free_and_destroy_model(&model);
+                
                 
             }
             else{
-                int elements=dimensionSizesInputWave[0];
-                nodes=Malloc(struct svm_node,elements+1);
+                points=dimensionSizesInputWave[0];
+                nodes=Malloc(struct svm_node,points+1);
                 IndexInt dataIndices[MAX_DIMENSIONS]={0};
                 double value[2]={0};
-                for (int i=0; i<elements; i++) {
+                for (int i=0; i<points; i++) {
                     dataIndices[0]=i;
                     MDGetNumericWavePointValue(p->inPutWave, dataIndices, value);
                     nodes[i].index=i+1;
                     nodes[i].value=value[0];
                 }
-                nodes[elements].index=-1;
+                nodes[points].index=-1;
                 double *prob_estimates=NULL;
                 double result=classifyNodes(nodes, model, predict_probability, prob_estimates);
                 SetOperationNumVar("V_SVMClass",result);
                 free(nodes);
-                svm_free_and_destroy_model(&model);
             }
             svm_set_print_string_function(NULL);
+            svm_free_and_destroy_model(&model);
+            free(prob_estimates);
         }
         else{
             return NULL_WAVE_OP;
@@ -508,11 +552,10 @@ double classifyNodes(svm_node *nodes, svm_model *model,int predict_probability, 
     int j=0;
     
     if (predict_probability && (svm_type==C_SVC || svm_type==NU_SVC)){
-        prob_estimates = (double *) malloc(nr_class*sizeof(double));
         predict_label = svm_predict_probability(model,nodes,prob_estimates);
-        printf("%g",predict_label);
-        for(j=0;j<nr_class;j++)
-            printf(" %g",prob_estimates[j]);
+        //printf("%g",predict_label);
+        //for(j=0;j<nr_class;j++)
+            //printf(" %g",prob_estimates[j]);
     }
     else
     {

@@ -11,10 +11,6 @@
 		5AAC32621FF235F800D95FCE /* svm.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AAC325F1FF235F800D95FCE /* svm.h */; };
 		5AAC32631FF235F800D95FCE /* svm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5AAC32601FF235F800D95FCE /* svm.cpp */; };
 		5AAC32641FF235F800D95FCE /* svm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5AAC32601FF235F800D95FCE /* svm.cpp */; };
-		5AAC32671FF23BE500D95FCE /* LoadWaveFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AAC32651FF23BE500D95FCE /* LoadWaveFunctions.h */; };
-		5AAC32681FF23BE500D95FCE /* LoadWaveFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AAC32651FF23BE500D95FCE /* LoadWaveFunctions.h */; };
-		5AAC32691FF23BE500D95FCE /* LoadWaveFunctions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5AAC32661FF23BE500D95FCE /* LoadWaveFunctions.cpp */; };
-		5AAC326A1FF23BE500D95FCE /* LoadWaveFunctions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5AAC32661FF23BE500D95FCE /* LoadWaveFunctions.cpp */; };
 		8905C6FB1986CDC5007C60B6 /* libXOPSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8905C6FA1986CDC5007C60B6 /* libXOPSupport.a */; };
 		8905C6FD1986CE86007C60B6 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8905C6FC1986CE86007C60B6 /* AudioToolbox.framework */; };
 		8905C7001986CF5C007C60B6 /* SVM_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 32BAE0B30371A71500C91783 /* SVM_Prefix.pch */; };
@@ -176,7 +172,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5AAC32621FF235F800D95FCE /* svm.h in Headers */,
-				5AAC32681FF23BE500D95FCE /* LoadWaveFunctions.h in Headers */,
 				8905C7001986CF5C007C60B6 /* SVM_Prefix.pch in Headers */,
 				8905C7011986CF5C007C60B6 /* SVM.h in Headers */,
 			);
@@ -187,7 +182,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5AAC32611FF235F800D95FCE /* svm.h in Headers */,
-				5AAC32671FF23BE500D95FCE /* LoadWaveFunctions.h in Headers */,
 				8D01CCC80486CAD60068D4B7 /* SVM_Prefix.pch in Headers */,
 				89A72A681090477B003AE340 /* SVM.h in Headers */,
 			);
@@ -311,7 +305,6 @@
 			files = (
 				5AAC32641FF235F800D95FCE /* svm.cpp in Sources */,
 				8905C7051986CF5C007C60B6 /* SVM.cpp in Sources */,
-				5AAC326A1FF23BE500D95FCE /* LoadWaveFunctions.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,7 +314,6 @@
 			files = (
 				5AAC32631FF235F800D95FCE /* svm.cpp in Sources */,
 				AA53F5640587C7410055F2C1 /* SVM.cpp in Sources */,
-				5AAC32691FF23BE500D95FCE /* LoadWaveFunctions.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
