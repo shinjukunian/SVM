@@ -26,8 +26,16 @@
     <Library Include="..\..\XOPSupport\VC\XOPSupport64.lib" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\SVM.cpp">
+    <ClCompile Include="..\libSVM\svm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\_SVM.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\libSVM\svm.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

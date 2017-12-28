@@ -25,39 +25,12 @@ BEGIN
 	XOP_TOOLKIT_VERSION				// XOP Toolkit version.
 END
 
-1100 XOPF							// Describes functions that the XOP adds to IGOR.
+// Windows, in the SimpleLoadWaveWinCustom.rc file.
+1100 XOPC // Operations added by XOP.
 BEGIN
-	"WAGetWaveInfo\0",				// Function name.
-	F_WAVE | F_EXTERNAL,			// Function category,
-	HSTRING_TYPE,					// Return value type.
-		WAVE_TYPE,					// First parameter type.
-		0,							// End of parameters.
-
-	"WAFill3DWaveDirectMethod\0",	// Function name.
-	F_WAVE | F_EXTERNAL,			// Function category,
-	NT_FP64,						// Return value type.
-		WAVE_TYPE,					// First parameter type.
-		0,							// End of parameters.
-
-	"WAFill3DWavePointMethod\0",	// Function name.
-	F_WAVE | F_EXTERNAL,			// Function category,
-	NT_FP64,						// Return value type.
-		WAVE_TYPE,					// First parameter type.
-		0,							// End of parameters.
-
-	"WAFill3DWaveStorageMethod\0",	// Function name.
-	F_WAVE | F_EXTERNAL,			// Function category,
-	NT_FP64,						// Return value type.
-		WAVE_TYPE,					// First parameter type.
-		0,							// End of parameters.
-
-	"WAModifyTextWave\0",			// Function name.
-	F_WAVE | F_EXTERNAL,			// Function category,
-	NT_FP64,						// Return value type.
-		WAVE_TYPE,					// First parameter type.
-		HSTRING_TYPE,				// Second parameter type.
-		HSTRING_TYPE,				// Third parameter type.
-		0,							// End of parameters.
-
-	"\0"							// NOTE: NULL required to terminate the resource.
+"SVMTrain\0", // Name of operation.
+XOPOp | dataOp | compilableOp, // Operation category specifier.
+"SVMClassify\0", // Name of operation.
+XOPOp | dataOp | compilableOp, // Operation category specifier.
+"\0"     // NOTE: NULL required to terminate the resource.
 END

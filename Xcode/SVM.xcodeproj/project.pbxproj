@@ -14,20 +14,20 @@
 		8905C6FB1986CDC5007C60B6 /* libXOPSupport.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8905C6FA1986CDC5007C60B6 /* libXOPSupport.a */; };
 		8905C6FD1986CE86007C60B6 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8905C6FC1986CE86007C60B6 /* AudioToolbox.framework */; };
 		8905C7001986CF5C007C60B6 /* SVM_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 32BAE0B30371A71500C91783 /* SVM_Prefix.pch */; };
-		8905C7011986CF5C007C60B6 /* SVM.h in Headers */ = {isa = PBXBuildFile; fileRef = 89A72A671090477B003AE340 /* SVM.h */; };
+		8905C7011986CF5C007C60B6 /* _SVM.h in Headers */ = {isa = PBXBuildFile; fileRef = 89A72A671090477B003AE340 /* _SVM.h */; };
 		8905C7031986CF5C007C60B6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C167DFE841241C02AAC07 /* InfoPlist.strings */; };
-		8905C7051986CF5C007C60B6 /* SVM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA53F5620587C7410055F2C1 /* SVM.cpp */; };
+		8905C7051986CF5C007C60B6 /* _SVM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA53F5620587C7410055F2C1 /* _SVM.cpp */; };
 		8905C7071986CF5C007C60B6 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		8905C7091986CF5C007C60B6 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8905C6FC1986CE86007C60B6 /* AudioToolbox.framework */; };
 		8905C70B1986CF5C007C60B6 /* SVM.r in Rez */ = {isa = PBXBuildFile; fileRef = AA53F5630587C7410055F2C1 /* SVM.r */; };
 		8905C7151986D0C1007C60B6 /* libXOPSupport64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8905C7141986D0C1007C60B6 /* libXOPSupport64.a */; };
 		893D595E1C330E96005CBDA1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 893D595D1C330E96005CBDA1 /* Cocoa.framework */; };
 		893D595F1C330E96005CBDA1 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 893D595D1C330E96005CBDA1 /* Cocoa.framework */; };
-		89A72A681090477B003AE340 /* SVM.h in Headers */ = {isa = PBXBuildFile; fileRef = 89A72A671090477B003AE340 /* SVM.h */; };
+		89A72A681090477B003AE340 /* _SVM.h in Headers */ = {isa = PBXBuildFile; fileRef = 89A72A671090477B003AE340 /* _SVM.h */; };
 		8D01CCC80486CAD60068D4B7 /* SVM_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 32BAE0B30371A71500C91783 /* SVM_Prefix.pch */; };
 		8D01CCCA0486CAD60068D4B7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C167DFE841241C02AAC07 /* InfoPlist.strings */; };
 		8D01CCCE0486CAD60068D4B7 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
-		AA53F5640587C7410055F2C1 /* SVM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA53F5620587C7410055F2C1 /* SVM.cpp */; };
+		AA53F5640587C7410055F2C1 /* _SVM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA53F5620587C7410055F2C1 /* _SVM.cpp */; };
 		AA53F5650587C7410055F2C1 /* SVM.r in Rez */ = {isa = PBXBuildFile; fileRef = AA53F5630587C7410055F2C1 /* SVM.r */; };
 /* End PBXBuildFile section */
 
@@ -58,18 +58,16 @@
 		32BAE0B30371A71500C91783 /* SVM_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVM_Prefix.pch; sourceTree = "<group>"; };
 		5AAC325F1FF235F800D95FCE /* svm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = svm.h; sourceTree = "<group>"; };
 		5AAC32601FF235F800D95FCE /* svm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = svm.cpp; sourceTree = "<group>"; };
-		5AAC32651FF23BE500D95FCE /* LoadWaveFunctions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LoadWaveFunctions.h; path = ../LoadWaveFunctions.h; sourceTree = "<group>"; };
-		5AAC32661FF23BE500D95FCE /* LoadWaveFunctions.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = LoadWaveFunctions.cpp; path = ../LoadWaveFunctions.cpp; sourceTree = "<group>"; };
 		8905C6FA1986CDC5007C60B6 /* libXOPSupport.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libXOPSupport.a; path = ../../XOPSupport/Xcode/libXOPSupport.a; sourceTree = SOURCE_ROOT; };
 		8905C6FC1986CE86007C60B6 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = /System/Library/Frameworks/AudioToolbox.framework; sourceTree = "<absolute>"; };
 		8905C7111986CF5C007C60B6 /* SVM64.xop */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SVM64.xop; sourceTree = BUILT_PRODUCTS_DIR; };
 		8905C7131986D076007C60B6 /* Info64.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info64.plist; sourceTree = SOURCE_ROOT; };
 		8905C7141986D0C1007C60B6 /* libXOPSupport64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libXOPSupport64.a; path = ../../XOPSupport/Xcode/libXOPSupport64.a; sourceTree = SOURCE_ROOT; };
 		893D595D1C330E96005CBDA1 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /Work/XOPDev/IgorXOPs7/SVM/Xcode/../../../../../System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
-		89A72A671090477B003AE340 /* SVM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SVM.h; path = ../SVM.h; sourceTree = SOURCE_ROOT; };
+		89A72A671090477B003AE340 /* _SVM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _SVM.h; path = ../_SVM.h; sourceTree = SOURCE_ROOT; };
 		8D01CCD10486CAD60068D4B7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D01CCD20486CAD60068D4B7 /* SVM.xop */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SVM.xop; sourceTree = BUILT_PRODUCTS_DIR; };
-		AA53F5620587C7410055F2C1 /* SVM.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SVM.cpp; path = ../SVM.cpp; sourceTree = SOURCE_ROOT; };
+		AA53F5620587C7410055F2C1 /* _SVM.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = _SVM.cpp; path = ../_SVM.cpp; sourceTree = SOURCE_ROOT; };
 		AA53F5630587C7410055F2C1 /* SVM.r */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.rez; name = SVM.r; path = ../SVM.r; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -138,10 +136,8 @@
 			children = (
 				5AAC325E1FF235F800D95FCE /* libSVM */,
 				32BAE0B30371A71500C91783 /* SVM_Prefix.pch */,
-				89A72A671090477B003AE340 /* SVM.h */,
-				AA53F5620587C7410055F2C1 /* SVM.cpp */,
-				5AAC32651FF23BE500D95FCE /* LoadWaveFunctions.h */,
-				5AAC32661FF23BE500D95FCE /* LoadWaveFunctions.cpp */,
+				89A72A671090477B003AE340 /* _SVM.h */,
+				AA53F5620587C7410055F2C1 /* _SVM.cpp */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -173,7 +169,7 @@
 			files = (
 				5AAC32621FF235F800D95FCE /* svm.h in Headers */,
 				8905C7001986CF5C007C60B6 /* SVM_Prefix.pch in Headers */,
-				8905C7011986CF5C007C60B6 /* SVM.h in Headers */,
+				8905C7011986CF5C007C60B6 /* _SVM.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -183,7 +179,7 @@
 			files = (
 				5AAC32611FF235F800D95FCE /* svm.h in Headers */,
 				8D01CCC80486CAD60068D4B7 /* SVM_Prefix.pch in Headers */,
-				89A72A681090477B003AE340 /* SVM.h in Headers */,
+				89A72A681090477B003AE340 /* _SVM.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,7 +300,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5AAC32641FF235F800D95FCE /* svm.cpp in Sources */,
-				8905C7051986CF5C007C60B6 /* SVM.cpp in Sources */,
+				8905C7051986CF5C007C60B6 /* _SVM.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,7 +309,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5AAC32631FF235F800D95FCE /* svm.cpp in Sources */,
-				AA53F5640587C7410055F2C1 /* SVM.cpp in Sources */,
+				AA53F5640587C7410055F2C1 /* _SVM.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

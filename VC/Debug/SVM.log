@@ -1,0 +1,105 @@
+﻿  svm.cpp
+..\libSVM\svm.cpp(2654): warning C4996: 'strdup': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _strdup. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\string.h(552): note: see declaration of 'strdup'
+..\libSVM\svm.cpp(2894): warning C4996: 'strdup': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _strdup. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\string.h(552): note: see declaration of 'strdup'
+  _SVM.cpp
+  Compiling...
+  Generating Code...
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\_svm.cpp(743): warning C4700: uninitialized local variable 'err' used
+     Creating library Debug\SVM.lib and object Debug\SVM.exp
+LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
+XOPSupport.lib(XOPDataFolderAccess.obj) : warning LNK4099: PDB 'vc90.pdb' was not found with 'XOPSupport.lib(XOPDataFolderAccess.obj)' or at '\\VBOXSVR\XOP_Toolkit_7\IgorXOPs7\SVM\VC\Debug\vc90.pdb'; linking object as if no debug info
+XOPSupport.lib(XOPDialogsWin.obj) : warning LNK4099: PDB 'vc90.pdb' was not found with 'XOPSupport.lib(XOPDialogsWin.obj)' or at '\\VBOXSVR\XOP_Toolkit_7\IgorXOPs7\SVM\VC\Debug\vc90.pdb'; linking object as if no debug info
+XOPSupport.lib(XOPFiles.obj) : warning LNK4099: PDB 'vc90.pdb' was not found with 'XOPSupport.lib(XOPFiles.obj)' or at '\\VBOXSVR\XOP_Toolkit_7\IgorXOPs7\SVM\VC\Debug\vc90.pdb'; linking object as if no debug info
+XOPSupport.lib(XOPFilesWin.obj) : warning LNK4099: PDB 'vc90.pdb' was not found with 'XOPSupport.lib(XOPFilesWin.obj)' or at '\\VBOXSVR\XOP_Toolkit_7\IgorXOPs7\SVM\VC\Debug\vc90.pdb'; linking object as if no debug info
+XOPSupport.lib(XOPNumericConversion.obj) : warning LNK4099: PDB 'vc90.pdb' was not found with 'XOPSupport.lib(XOPNumericConversion.obj)' or at '\\VBOXSVR\XOP_Toolkit_7\IgorXOPs7\SVM\VC\Debug\vc90.pdb'; linking object as if no debug info
+XOPSupport.lib(XOPSupport.obj) : warning LNK4099: PDB 'vc90.pdb' was not found with 'XOPSupport.lib(XOPSupport.obj)' or at '\\VBOXSVR\XOP_Toolkit_7\IgorXOPs7\SVM\VC\Debug\vc90.pdb'; linking object as if no debug info
+XOPSupport.lib(XOPSupportWin.obj) : warning LNK4099: PDB 'vc90.pdb' was not found with 'XOPSupport.lib(XOPSupportWin.obj)' or at '\\VBOXSVR\XOP_Toolkit_7\IgorXOPs7\SVM\VC\Debug\vc90.pdb'; linking object as if no debug info
+XOPSupport.lib(XOPWaveAccess.obj) : warning LNK4099: PDB 'vc90.pdb' was not found with 'XOPSupport.lib(XOPWaveAccess.obj)' or at '\\VBOXSVR\XOP_Toolkit_7\IgorXOPs7\SVM\VC\Debug\vc90.pdb'; linking object as if no debug info
+  SVM.vcxproj -> \\VBOXSVR\XOP_Toolkit_7\IgorXOPs7\SVM\VC\.\SVM.xop
+  SVM.vcxproj -> Debug\SVM.pdb (Full PDB)
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(146): warning C6308: 'realloc' might return null pointer: assigning null pointer to 'h->data', which is passed as an argument to 'realloc', will cause the original memory block to be leaked.
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(861): warning C6011: Dereferencing NULL pointer 'Q_i'. 
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(1113): warning C6011: Dereferencing NULL pointer 'Q_in'. 
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(1680): warning C6385: Reading invalid data from 'alpha':  the readable size is '((prob->l))*sizeof(double)' bytes, but '16' bytes may be read.
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(1672): warning C6001: Using uninitialized memory 'si'.
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(1734): warning C6011: Dereferencing NULL pointer 't'. 
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(1845): warning C6011: Dereferencing NULL pointer 'Q[j]'. See line 1841 for an earlier location where this can occur
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(1840): warning C6386: Buffer overrun while writing to 'Q':  the writable size is '((k))*sizeof(double *)' bytes, but '8' bytes might be written.
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(1840): warning C6011: Dereferencing NULL pointer 'Q'. 
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(1844): warning C6385: Reading invalid data from 'Q':  the readable size is '((k))*sizeof(double *)' bytes, but '8' bytes may be read.
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(1841): warning C6011: Dereferencing NULL pointer 'Q[t]'. 
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(1862): warning C6385: Reading invalid data from 'Qp':  the readable size is '((k))*sizeof(double)' bytes, but '16' bytes may be read.
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(1859): warning C6386: Buffer overrun while writing to 'Qp':  the writable size is '((k))*sizeof(double)' bytes, but '16' bytes might be written.
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(1859): warning C6011: Dereferencing NULL pointer 'Qp'. 
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(1948): warning C6385: Reading invalid data from 'perm':  the readable size is '((prob->l))*sizeof(int)' bytes, but 'j' bytes may be read.
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(1929): warning C6386: Buffer overrun while writing to 'subprob.x':  the writable size is '((subprob.l))*sizeof(svm_node *)' bytes, but '8' bytes might be written.
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(1935): warning C6385: Reading invalid data from 'subprob.y':  the readable size is '((subprob.l))*sizeof(double)' bytes, but '16' bytes may be read.
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(1930): warning C6386: Buffer overrun while writing to 'subprob.y':  the writable size is '((subprob.l))*sizeof(double)' bytes, but '16' bytes might be written.
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(1993): warning C6385: Reading invalid data from 'ymv':  the readable size is '((prob->l))*sizeof(double)' bytes, but '16' bytes may be read.
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(1993): warning C6386: Buffer overrun while writing to 'ymv':  the writable size is '((prob->l))*sizeof(double)' bytes, but '16' bytes might be written.
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(1993): warning C6011: Dereferencing NULL pointer 'ymv'. 
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(2042): warning C6308: 'realloc' might return null pointer: assigning null pointer to 'label', which is passed as an argument to 'realloc', will cause the original memory block to be leaked.
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(2043): warning C6308: 'realloc' might return null pointer: assigning null pointer to 'count', which is passed as an argument to 'realloc', will cause the original memory block to be leaked.
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(2046): warning C6011: Dereferencing NULL pointer 'count'. 
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(2045): warning C6011: Dereferencing NULL pointer 'label'. 
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(2070): warning C6011: Dereferencing NULL pointer 'start'. 
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(2075): warning C6385: Reading invalid data from 'data_label':  the readable size is '((l))*sizeof(int)' bytes, but '8' bytes may be read.
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(2036): warning C6386: Buffer overrun while writing to 'data_label':  the writable size is '((l))*sizeof(int)' bytes, but '8' bytes might be written.
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(2036): warning C6011: Dereferencing NULL pointer 'data_label'. 
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(2247): warning C6385: Reading invalid data from 'probA':  the readable size is '((nr_class*((nr_class-1))/2))*sizeof(double)' bytes, but '16' bytes may be read.
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(2247): warning C6386: Buffer overrun while writing to 'model->probA':  the writable size is '((nr_class*((nr_class-1))/2))*sizeof(double)' bytes, but '16' bytes might be written.
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(2248): warning C6385: Reading invalid data from 'probB':  the readable size is '((nr_class*((nr_class-1))/2))*sizeof(double)' bytes, but '16' bytes may be read.
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(2248): warning C6386: Buffer overrun while writing to 'model->probB':  the writable size is '((nr_class*((nr_class-1))/2))*sizeof(double)' bytes, but '16' bytes might be written.
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(2248): warning C6011: Dereferencing NULL pointer 'model->probB'. 
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(2239): warning C6386: Buffer overrun while writing to 'model->rho':  the writable size is '((nr_class*((nr_class-1))/2))*sizeof(double)' bytes, but '16' bytes might be written.
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(2239): warning C6011: Dereferencing NULL pointer 'model->rho'. 
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(2330): warning C6385: Reading invalid data from 'f':  the readable size is '((nr_class*((nr_class-1))/2))*sizeof(decision_function)' bytes, but '32' bytes may be read.
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(2450): warning C6385: Reading invalid data from 'perm':  the readable size is '((l))*sizeof(int)' bytes, but '8' bytes may be read.
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(2418): warning C6385: Reading invalid data from 'fold_start':  the readable size is '((nr_fold+1))*sizeof(int)' bytes, but '8' bytes may be read.
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(2429): warning C6386: Buffer overrun while writing to 'subprob.x':  the writable size is '((subprob.l))*sizeof(svm_node *)' bytes, but '8' bytes might be written.
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(2430): warning C6386: Buffer overrun while writing to 'subprob.y':  the writable size is '((subprob.l))*sizeof(double)' bytes, but '16' bytes might be written.
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(2544): warning C6385: Reading invalid data from 'start':  the readable size is '((nr_class))*sizeof(int)' bytes, but '8' bytes may be read.
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(2536): warning C6011: Dereferencing NULL pointer 'vote'. 
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(2532): warning C6386: Buffer overrun while writing to 'start':  the writable size is '((nr_class))*sizeof(int)' bytes, but '8' bytes might be written.
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(2611): warning C6385: Reading invalid data from 'dec_values':  the readable size is '((nr_class*((nr_class-1))/2))*sizeof(double)' bytes, but '16' bytes may be read.
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(2611): warning C6011: Dereferencing NULL pointer 'pairwise_prob[i]'. 
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(2612): warning C6011: Dereferencing NULL pointer 'pairwise_prob[j]'. See line 2611 for an earlier location where this can occur
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(2617): warning C6011: Dereferencing NULL pointer 'pairwise_prob[0]'. See line 2611 for an earlier location where this can occur
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(2618): warning C6385: Reading invalid data from 'pairwise_prob':  the readable size is '((nr_class))*sizeof(double *)' bytes, but '8' bytes may be read.
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(2618): warning C6011: Dereferencing NULL pointer 'pairwise_prob[1]'. See line 2611 for an earlier location where this can occur
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(2606): warning C6386: Buffer overrun while writing to 'pairwise_prob':  the writable size is '((nr_class))*sizeof(double *)' bytes, but '8' bytes might be written.
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(2606): warning C6011: Dereferencing NULL pointer 'pairwise_prob'. 
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(2757): warning C6308: 'realloc' might return null pointer: assigning null pointer to 'char * line', which is passed as an argument to 'realloc', will cause the original memory block to be leaked.
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(2758): warning C28183: 'line' could be '0', and is a copy of the value found in 'realloc()`2757':  this does not adhere to the specification for the function 'strlen'. 
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(2786): warning C6054: String 'cmd' might not be zero-terminated.
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(2844): warning C6011: Dereferencing NULL pointer 'model->label'. 
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(2858): warning C6011: Dereferencing NULL pointer 'model->probB'. 
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(2865): warning C6011: Dereferencing NULL pointer 'model->nSV'. 
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(2851): warning C6011: Dereferencing NULL pointer 'model->probA'. 
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(2837): warning C6011: Dereferencing NULL pointer 'model->rho'. 
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(2976): warning C6386: Buffer overrun while writing to 'x_space':  the writable size is '((elements))*sizeof(svm_node)' bytes, but '32' bytes might be written.
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(2962): warning C6386: Buffer overrun while writing to 'model->sv_coef[0]':  the writable size is '((l))*sizeof(double)' bytes, but '16' bytes might be written.
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(2959): warning C6386: Buffer overrun while writing to 'model->SV':  the writable size is '((l))*sizeof(svm_node *)' bytes, but '8' bytes might be written.
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(2959): warning C6011: Dereferencing NULL pointer 'x_space'. 
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(3137): warning C6308: 'realloc' might return null pointer: assigning null pointer to 'label', which is passed as an argument to 'realloc', will cause the original memory block to be leaked.
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(3138): warning C6308: 'realloc' might return null pointer: assigning null pointer to 'count', which is passed as an argument to 'realloc', will cause the original memory block to be leaked.
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(3141): warning C6011: Dereferencing NULL pointer 'count'. 
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\libsvm\svm.cpp(3140): warning C6011: Dereferencing NULL pointer 'label'. 
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\_svm.cpp(317): warning C6031: Return value ignored: 'snprintf'.
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\_svm.cpp(335): warning C6031: Return value ignored: 'snprintf'.
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\_svm.cpp(393): warning C6031: Return value ignored: 'snprintf'.
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\_svm.cpp(389): warning C6386: Buffer overrun while writing to 'params->weight_label':  the writable size is '((weightLabels))*sizeof(int)' bytes, but '8' bytes might be written.
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\_svm.cpp(389): warning C6011: Dereferencing NULL pointer 'params->weight_label'. 
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\_svm.cpp(392): warning C6386: Buffer overrun while writing to 'params->weight':  the writable size is '((weightLabels))*sizeof(double)' bytes, but '16' bytes might be written.
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\_svm.cpp(392): warning C6011: Dereferencing NULL pointer 'params->weight'. 
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\_svm.cpp(393): warning C6385: Reading invalid data from 'params->weight_label':  the readable size is '((weightLabels))*sizeof(int)' bytes, but '8' bytes may be read.
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\_svm.cpp(393): warning C6387: 'buffer' could be '0':  this does not adhere to the specification for the function 'snprintf'. 
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\_svm.cpp(427): warning C6386: Buffer overrun while writing to 'problem.x':  the writable size is '((problem.l))*sizeof(svm_node *)' bytes, but '8' bytes might be written.
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\_svm.cpp(431): warning C6386: Buffer overrun while writing to 'problem.y':  the writable size is '((problem.l))*sizeof(double)' bytes, but '16' bytes might be written.
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\_svm.cpp(549): warning C6031: Return value ignored: 'snprintf'.
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\_svm.cpp(556): warning C6031: Return value ignored: 'snprintf'.
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\_svm.cpp(606): warning C6386: Buffer overrun while writing to 'nodes':  the writable size is '((points+1))*sizeof(svm_node)' bytes, but 'points' bytes might be written.
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\_svm.cpp(606): warning C6011: Dereferencing NULL pointer 'nodes'. 
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\_svm.cpp(743): warning C6001: Using uninitialized memory 'err'.

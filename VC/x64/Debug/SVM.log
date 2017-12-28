@@ -1,0 +1,11 @@
+﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(936,5): warning MSB8027: Two or more files with the name of svm.cpp will produce outputs to the same location. This can lead to an incorrect build result.  The files involved are ..\libSVM\svm.cpp, ..\SVM.cpp.
+  svm.cpp
+..\libSVM\svm.cpp(2654): warning C4996: 'strdup': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _strdup. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\string.h(552): note: see declaration of 'strdup'
+..\libSVM\svm.cpp(2894): warning C4996: 'strdup': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _strdup. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\string.h(552): note: see declaration of 'strdup'
+  SVM.cpp
+..\SVM.cpp(377): warning C4244: 'initializing': conversion from 'CountInt' to 'int', possible loss of data
+..\SVM.cpp(417): warning C4244: 'initializing': conversion from 'CountInt' to 'int', possible loss of data
+..\SVM.cpp(596): error C2059: syntax error: ')'
+  Generating Code...

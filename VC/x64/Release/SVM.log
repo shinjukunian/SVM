@@ -1,0 +1,18 @@
+﻿  svm.cpp
+..\libSVM\svm.cpp(2654): warning C4996: 'strdup': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _strdup. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\string.h(552): note: see declaration of 'strdup'
+..\libSVM\svm.cpp(2894): warning C4996: 'strdup': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _strdup. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\string.h(552): note: see declaration of 'strdup'
+  _SVM.cpp
+  Generating Code...
+\\vboxsvr\xop_toolkit_7\igorxops7\svm\_svm.cpp(743): warning C4700: uninitialized local variable 'err' used
+     Creating library x64\Release\SVM64.lib and object x64\Release\SVM64.exp
+XOPSupport64.lib(XOPDataFolderAccess.obj) : warning LNK4099: PDB 'vc90.pdb' was not found with 'XOPSupport64.lib(XOPDataFolderAccess.obj)' or at '\\VBOXSVR\XOP_Toolkit_7\IgorXOPs7\SVM\VC\x64\Release\vc90.pdb'; linking object as if no debug info
+XOPSupport64.lib(XOPDialogsWin.obj) : warning LNK4099: PDB 'vc90.pdb' was not found with 'XOPSupport64.lib(XOPDialogsWin.obj)' or at '\\VBOXSVR\XOP_Toolkit_7\IgorXOPs7\SVM\VC\x64\Release\vc90.pdb'; linking object as if no debug info
+XOPSupport64.lib(XOPFiles.obj) : warning LNK4099: PDB 'vc90.pdb' was not found with 'XOPSupport64.lib(XOPFiles.obj)' or at '\\VBOXSVR\XOP_Toolkit_7\IgorXOPs7\SVM\VC\x64\Release\vc90.pdb'; linking object as if no debug info
+XOPSupport64.lib(XOPFilesWin.obj) : warning LNK4099: PDB 'vc90.pdb' was not found with 'XOPSupport64.lib(XOPFilesWin.obj)' or at '\\VBOXSVR\XOP_Toolkit_7\IgorXOPs7\SVM\VC\x64\Release\vc90.pdb'; linking object as if no debug info
+XOPSupport64.lib(XOPNumericConversion.obj) : warning LNK4099: PDB 'vc90.pdb' was not found with 'XOPSupport64.lib(XOPNumericConversion.obj)' or at '\\VBOXSVR\XOP_Toolkit_7\IgorXOPs7\SVM\VC\x64\Release\vc90.pdb'; linking object as if no debug info
+XOPSupport64.lib(XOPSupport.obj) : warning LNK4099: PDB 'vc90.pdb' was not found with 'XOPSupport64.lib(XOPSupport.obj)' or at '\\VBOXSVR\XOP_Toolkit_7\IgorXOPs7\SVM\VC\x64\Release\vc90.pdb'; linking object as if no debug info
+XOPSupport64.lib(XOPSupportWin.obj) : warning LNK4099: PDB 'vc90.pdb' was not found with 'XOPSupport64.lib(XOPSupportWin.obj)' or at '\\VBOXSVR\XOP_Toolkit_7\IgorXOPs7\SVM\VC\x64\Release\vc90.pdb'; linking object as if no debug info
+XOPSupport64.lib(XOPWaveAccess.obj) : warning LNK4099: PDB 'vc90.pdb' was not found with 'XOPSupport64.lib(XOPWaveAccess.obj)' or at '\\VBOXSVR\XOP_Toolkit_7\IgorXOPs7\SVM\VC\x64\Release\vc90.pdb'; linking object as if no debug info
+  SVM.vcxproj -> \\VBOXSVR\XOP_Toolkit_7\IgorXOPs7\SVM\VC\.\SVM64.xop
