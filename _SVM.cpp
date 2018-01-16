@@ -332,7 +332,7 @@ ExecuteSVMTrain(SVMTrainRuntimeParamsPtr p)
                         SetOperationStrVar("S_fileName",outPutPath);
                         svm_set_print_string_function(NULL);
                         char notice[1024];
-                        snprintf(notice,1024, "Model saved to %s",outPutPath);
+                        snprintf(notice,1024, "Model saved to %s\n",outPutPath);
                         XOPNotice(notice);
                     }
   
