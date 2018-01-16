@@ -14,9 +14,19 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>SVMRelease.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>5A1C8889200DC45B00A89B4A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>8905C6FE1986CF5C007C60B6</key>
 		<dict>
 			<key>primary</key>

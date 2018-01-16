@@ -6,6 +6,21 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		5A1C8889200DC45B00A89B4A /* SVMRelease */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 5A1C888D200DC45B00A89B4A /* Build configuration list for PBXAggregateTarget "SVMRelease" */;
+			buildPhases = (
+			);
+			dependencies = (
+				5A1C8891200DC46400A89B4A /* PBXTargetDependency */,
+				5A1C888F200DC46200A89B4A /* PBXTargetDependency */,
+			);
+			name = SVMRelease;
+			productName = SVMRelease;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		5AAC32611FF235F800D95FCE /* svm.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AAC325F1FF235F800D95FCE /* svm.h */; };
 		5AAC32621FF235F800D95FCE /* svm.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AAC325F1FF235F800D95FCE /* svm.h */; };
@@ -30,6 +45,23 @@
 		AA53F5640587C7410055F2C1 /* _SVM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA53F5620587C7410055F2C1 /* _SVM.cpp */; };
 		AA53F5650587C7410055F2C1 /* SVM.r in Rez */ = {isa = PBXBuildFile; fileRef = AA53F5630587C7410055F2C1 /* SVM.r */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5A1C888E200DC46200A89B4A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8D01CCC60486CAD60068D4B7;
+			remoteInfo = SVM;
+		};
+		5A1C8890200DC46400A89B4A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8905C6FE1986CF5C007C60B6;
+			remoteInfo = SVM64;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		8905C70C1986CF5C007C60B6 /* CopyFiles */ = {
@@ -236,6 +268,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0620;
+				TargetAttributes = {
+					5A1C8889200DC45B00A89B4A = {
+						CreatedOnToolsVersion = 9.2;
+						DevelopmentTeam = DVQ96RL2KL;
+						ProvisioningStyle = Automatic;
+					};
+				};
 			};
 			buildConfigurationList = 89CFE73C093E73F4002BBDEE /* Build configuration list for PBXProject "SVM" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -253,6 +292,7 @@
 			targets = (
 				8D01CCC60486CAD60068D4B7 /* SVM */,
 				8905C6FE1986CF5C007C60B6 /* SVM64 */,
+				5A1C8889200DC45B00A89B4A /* SVMRelease */,
 			);
 		};
 /* End PBXProject section */
@@ -316,6 +356,19 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		5A1C888F200DC46200A89B4A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8D01CCC60486CAD60068D4B7 /* SVM */;
+			targetProxy = 5A1C888E200DC46200A89B4A /* PBXContainerItemProxy */;
+		};
+		5A1C8891200DC46400A89B4A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8905C6FE1986CF5C007C60B6 /* SVM64 */;
+			targetProxy = 5A1C8890200DC46400A89B4A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		089C167DFE841241C02AAC07 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
@@ -328,6 +381,36 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		5A1C888A200DC45B00A89B4A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DVQ96RL2KL;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		5A1C888B200DC45B00A89B4A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DVQ96RL2KL;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		5A1C888C200DC45B00A89B4A /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DVQ96RL2KL;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Default;
+		};
 		8905C70E1986CF5C007C60B6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -578,6 +661,16 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		5A1C888D200DC45B00A89B4A /* Build configuration list for PBXAggregateTarget "SVMRelease" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5A1C888A200DC45B00A89B4A /* Debug */,
+				5A1C888B200DC45B00A89B4A /* Release */,
+				5A1C888C200DC45B00A89B4A /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
 		8905C70D1986CF5C007C60B6 /* Build configuration list for PBXNativeTarget "SVM64" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
