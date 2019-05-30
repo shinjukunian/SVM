@@ -1,5 +1,5 @@
 /*
-	SVM.h -- equates for SVM XOP
+	_SVM.h -- equates for SVM XOP
 */
 
 /* SVM custom error codes */
