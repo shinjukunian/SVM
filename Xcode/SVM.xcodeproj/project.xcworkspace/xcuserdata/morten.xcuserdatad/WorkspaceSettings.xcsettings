@@ -4,8 +4,14 @@
 <dict>
 	<key>BuildLocationStyle</key>
 	<string>UseTargetSettings</string>
+	<key>CustomBuildIntermediatesPath</key>
+	<string>Build/Intermediates.noindex</string>
 	<key>CustomBuildLocationType</key>
 	<string>RelativeToDerivedData</string>
+	<key>CustomBuildProductsPath</key>
+	<string>Build/Products</string>
+	<key>CustomIndexStorePath</key>
+	<string>Index/DataStore</string>
 	<key>DerivedDataLocationStyle</key>
 	<string>Default</string>
 	<key>EnabledFullIndexStoreVisibility</key>
