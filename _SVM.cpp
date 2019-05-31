@@ -436,7 +436,7 @@ svm_problem makeProblem(waveHndl inputWave, waveHndl inputClasses, svm_node *buf
 
 
 
-// Operation template: SVMClassify /PROB modelPath=name:modelPath, inputWave=wave:inPutWave
+// Operation template: SVMClassify /PROB /DEC /P=name:pathName modelName=string:modelname, inputWave=wave:inPutWave
 // Structure to hold the parameters for svm classification
 
 // Runtime param structure for SVMClassify operation.
@@ -477,7 +477,7 @@ typedef struct SVMClassifyRuntimeParams* SVMClassifyRuntimeParamsPtr;
 #pragma pack()    // Reset structure alignment to default.
 
 /*
- ExecuteSVMClassify load the model and runs classification / regression of the input data. TODO: report decision values (optional)
+ ExecuteSVMClassify load the model and runs classification / regression of the input data.
  */
 
 extern "C" int
@@ -746,26 +746,6 @@ RegisterSVMTrain(void)
 static XOPIORecResult
 RegisterFunction()
 {
-//	int funcIndex;
-//
-//	funcIndex = (int)GetXOPItem(0);		// Which function is Igor asking about?
-//    switch (funcIndex) {
-//        case 0:                        // WAGetWaveInfo(wave)
-//            return (XOPIORecResult)WAGetWaveInfo;
-//            break;
-//        case 1:                        // WAFill3DWaveDirectMethod(wave)
-//            return (XOPIORecResult)WAFill3DWaveDirectMethod;
-//            break;
-//        case 2:                        // WAFill3DWavePointMethod(wave)
-//            return (XOPIORecResult)WAFill3DWavePointMethod;
-//            break;
-//        case 3:                        // WAFill3DWaveStorageMethod(wave)
-//            return (XOPIORecResult)WAFill3DWaveStorageMethod;
-//            break;
-//        case 4:                        // WAModifyTextWave(wave, prependString, appendString)
-//            return (XOPIORecResult)WAModifyTextWave;
-//            break;
-//    }
 	return 0;
 }
 
@@ -779,30 +759,7 @@ RegisterFunction()
 static int
 DoFunction()
 {
-//    int funcIndex;
-//    void *p;                // Pointer to structure containing function parameters and result.
-    int err;
-//
-//    funcIndex = (int)GetXOPItem(0);    // Which function is being invoked ?
-//    p = (void*)GetXOPItem(1);        // Get pointer to params/result.
-//    switch (funcIndex) {
-//        case 0:                        // WAGetWaveInfo(wave)
-//            err = WAGetWaveInfo((WAGetWaveInfoParams*)p);
-//            break;
-//        case 1:                        // WAFill3DWaveDirectMethod(wave)
-//            err = WAFill3DWaveDirectMethod((WAFill3DWaveDirectMethodParams*)p);
-//            break;
-//        case 2:                        // WAFill3DWavePointMethod(wave)
-//            err = WAFill3DWavePointMethod((WAFill3DWavePointMethodParams*)p);
-//            break;
-//        case 3:                        // WAFill3DWaveStorageMethod(wave)
-//            err = WAFill3DWaveStorageMethod((WAFill3DWaveStorageMethodParams*)p);
-//            break;
-//        case 4:                        // WAModifyTextWave(wave, prependString, appendString)
-//            err = WAModifyTextWave((WAModifyTextWaveParams*)p);
-//            break;
-//    }
-	return(err);
+	return 0;
 }
 
 /*	XOPEntry()
