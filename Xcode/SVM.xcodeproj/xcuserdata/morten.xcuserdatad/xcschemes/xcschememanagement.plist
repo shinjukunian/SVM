@@ -9,17 +9,12 @@
 			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
-		<key>SVM.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>2</integer>
-		</dict>
-		<key>SVM64.xcscheme</key>
+		<key>SVM64.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
-		<key>SVMRelease.xcscheme</key>
+		<key>SVMRelease.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>1</integer>
@@ -33,6 +28,11 @@
 			<true/>
 		</dict>
 		<key>8905C6FE1986CF5C007C60B6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8D01CCC60486CAD60068D4B7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
